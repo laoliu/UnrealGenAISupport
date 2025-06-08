@@ -484,7 +484,7 @@ bool UGenBlueprintNodeCreator::TryCreateKnownNodeType(UEdGraph* Graph, const FSt
                                                       const FString& PropertiesJson)
 {
 	InitNodeTypeMap();
-	FString ActualNodeType = NodeTypeMap.FindRef(NodeType.ToLower(), NodeType);
+	FString ActualNodeType = NodeTypeMap.FindRef(NodeType.ToLower());
 
 	if (ActualNodeType.Equals(TEXT("EventBeginPlay"), ESearchCase::IgnoreCase) ||
 		ActualNodeType.Equals(TEXT("BeginPlay"), ESearchCase::IgnoreCase) ||

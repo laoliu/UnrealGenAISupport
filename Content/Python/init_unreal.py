@@ -129,10 +129,10 @@ def initialize_socket_server():
                     log.log_info("Unreal Socket Server started successfully")
 
                     # Now start the MCP server
-                    if start_mcp_server():
-                        log.log_info("Both servers started successfully")
-                    else:
-                        log.log_error("Failed to start MCP server")
+                    #if start_mcp_server():
+                    #    log.log_info("Both servers started successfully")
+                    #else:
+                    #    log.log_error("Failed to start MCP server")
                 else:
                     log.log_error(f"Server file not found at: {server_path}")
             else:

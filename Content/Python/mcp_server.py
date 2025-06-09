@@ -11,37 +11,37 @@ from pathlib import Path
 # DO NOT IMPORT UNREAL MODULES HERE OR EXECUTE IT IN THE UNREAL ENGINE PYTHON INTERPRETER
 
 # Create a PID file to let the Unreal plugin know this process is running
-def write_pid_file():
-    try:
-        pid = os.getpid()
-        pid_dir = os.path.join(os.path.expanduser("~"), ".unrealgenai")
-        os.makedirs(pid_dir, exist_ok=True)
-        pid_path = os.path.join(pid_dir, "mcp_server.pid")
+# def write_pid_file():
+#     try:
+#         pid = os.getpid()
+#         pid_dir = os.path.join(os.path.expanduser("~"), ".unrealgenai")
+#         os.makedirs(pid_dir, exist_ok=True)
+#         pid_path = os.path.join(pid_dir, "mcp_server.pid")
 
-        with open(pid_path, "w") as f:
-            f.write(f"{pid}\n9877")  # Store PID and port
+#         with open(pid_path, "w") as f:
+#             f.write(f"{pid}\n9877")  # Store PID and port
 
-        # Register to delete the PID file on exit
-        import atexit
-        def cleanup_pid_file():
-            try:
-                if os.path.exists(pid_path):
-                    os.remove(pid_path)
-            except:
-                pass
+#         # Register to delete the PID file on exit
+#         import atexit
+#         def cleanup_pid_file():
+#             try:
+#                 if os.path.exists(pid_path):
+#                     os.remove(pid_path)
+#             except:
+#                 pass
 
-        atexit.register(cleanup_pid_file)
+#         atexit.register(cleanup_pid_file)
 
-        return pid_path
-    except Exception as e:
-        print(f"Failed to write PID file: {e}", file=sys.stderr)
-        return None
+#         return pid_path
+#     except Exception as e:
+#         print(f"Failed to write PID file: {e}", file=sys.stderr)
+#         return None
 
 
 # Write PID file on startup
-pid_file = write_pid_file()
-if pid_file:
-    print(f"MCP Server started with PID file at: {pid_file}", file=sys.stderr)
+# pid_file = write_pid_file()
+# if pid_file:
+#     print(f"MCP Server started with PID file at: {pid_file}", file=sys.stderr)
 
 # Create an MCP server
 mcp = FastMCP("UnrealHandshake")
@@ -1060,7 +1060,8 @@ if __name__ == "__main__":
 
     try:
         print("Server starting...", file=sys.stderr)
-        mcp.run()
+        mcp.run("sse")
+        print("End starting...")
     except Exception as e:
         print(f"Server crashed with error: {e}", file=sys.stderr)
         traceback.print_exc(file=sys.stderr)
